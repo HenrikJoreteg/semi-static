@@ -8,7 +8,6 @@ It's silly to build a specifc route for that page when all you really want is a 
 
 I find myself adding code like this to nearly every express app I write, so I figured why the heck not publish an npm module and re-use that. So, here we are.
 
-
 ## How to use it
 
 1. Install with npm: 
@@ -17,14 +16,9 @@ I find myself adding code like this to nearly every express app I write, so I fi
 2. Create a folder called `static` inside your express views folder.
 
 3. Register a handler that tells it to use semi-static to render and serve template names at urls as if they were static:
-
-```js
-app.get('*', semiStatic());
-```
+    `app.get('*', semiStatic());`
 
 4. Profit!
-
-
 
 ## Example
 
