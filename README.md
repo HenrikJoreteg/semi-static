@@ -11,7 +11,24 @@ I find myself adding code like this to nearly every express app I write, so I fi
 
 ## How to use it
 
-You can just `node server.js` and both http://localhost:3000/test and http://localhost:3000/nested/nested-works-too should render the correct templates.
+1. Install with npm: 
+    `npm install semi-static`
+
+2. Create a folder called `static` inside your express views folder.
+
+3. Register a handler that tells it to use semi-static to render and serve template names at urls as if they were static:
+
+```js
+app.get('*', semiStatic());
+```
+
+4. Profit!
+
+
+
+## Example
+
+You can run the example in this repo with `node server.js` and both http://localhost:3000/test and http://localhost:3000/nested/nested-works-too should render the correct templates.
 
 Here's the code:
 
@@ -39,12 +56,6 @@ app.all('*', function (req, res) {
 app.listen(3000);
 console.log('started');
 ```
-
-
-## Install
-
-`npm install semi-static`
-
 
 ## Options / How it works
 
