@@ -59,7 +59,7 @@ Defaults are `jade` as a file extension and `__dirnam + '/views/static'` as the 
 
 If that's not the case you can set the options as follows:
 
-```
+```js
 app.get('*', semiStatic({
     folderPath: '/my-other-folder',
     fileExt: 'ejs'
