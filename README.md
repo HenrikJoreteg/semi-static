@@ -20,7 +20,7 @@ I find myself adding code like this to nearly every express app I write, so I fi
 
 4. Profit!
 
-## Example
+## Full Example
 
 You can run the example in this repo with `node server.js` and both http://localhost:3000/test and http://localhost:3000/nested/nested-works-too should render the correct templates.
 
