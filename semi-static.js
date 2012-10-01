@@ -1,12 +1,13 @@
 var url = require('url'),
     fs = require('fs'),
+    path = require('path'),
     _ = require('underscore');
 
 
 module.exports = function (conf) {
     var config = conf || {};
     _.defaults(config, {
-        folderPath: __dirname + '/views/static',
+        folderPath: path.dirname(module.parent.filename) + '/views/static',
         fileExt: 'jade'
     });
     return function (req, res, next) {
