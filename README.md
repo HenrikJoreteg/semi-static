@@ -26,7 +26,7 @@ You can run the example in this repo with `node server.js` and both http://local
 
 Here's the code:
 
-```
+```js
 // super simple demo
 var express = require('express'),
     semiStatic = require('./semi-static');
