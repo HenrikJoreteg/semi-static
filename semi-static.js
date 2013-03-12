@@ -1,22 +1,29 @@
 var url = require('url'),
     fs = require('fs'),
-    path = require('path'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    path = require('path');
 
 
 module.exports = function (conf) {
     var config = conf || {};
     _.defaults(config, {
-        folderPath: path.dirname(module.parent.filename) + '/views/static',
-        fileExt: 'jade'
+        folderPath: path.dirname(require.main.filename) + '/views/static',
+        fileExt: 'jade',
+        root: ''
     });
     return function (req, res, next) {
-        var parsed = url.parse(req.url),
-            fullPath = config.folderPath + parsed.pathname + '.' + config.fileExt;
-        
+        var pathName = (config.root && req.url.indexOf(config.root) === 0) ? req.url.slice(config.root.length) : req.url,
+            fullPath;
+
+        if (req.url === config.root || req.url === (config.root + '/')) {
+            fullPath = config.folderPath + '/index.' + config.fileExt;
+        } else {
+            fullPath = config.folderPath + pathName + '.' + config.fileExt;
+        }
+
         fs.exists(fullPath, function (exists) {
             if (exists) {
-                res.render(fullPath, {pageName: _.last(parsed.pathname.split('/'))});
+                res.render(fullPath, {pageName: _.last(req.url.split('/'))});
             } else {
                 next();
             }

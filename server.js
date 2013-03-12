@@ -11,6 +11,11 @@ app.set('view engine', 'jade');
 // register our handler
 app.get('*', semiStatic());
 
+app.get('/hello*', semiStatic({
+    folderPath: __dirname + '/views2',
+    root: '/hello'
+}));
+
 // we can still have a normal 404 at the end
 // because it will only do something if there's
 // a path that matches.

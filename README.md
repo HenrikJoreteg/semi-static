@@ -29,7 +29,7 @@ Here's the code:
 ```js
 // super simple demo
 var express = require('express'),
-    semiStatic = require('./semi-static');
+    semiStatic = require('semi-static');
 
 // init our app
 app = express();
@@ -60,13 +60,37 @@ Defaults are `jade` as a file extension and `__dirnam + '/views/static'` as the 
 If that's not the case you can set the options as follows:
 
 ```js
-app.get('*', semiStatic({
-    folderPath: '/my-other-folder',
-    fileExt: 'ejs'
+app.get('/hello*', semiStatic({
+    folderPath: __dirname + '/my-other-folder',
+    fileExt: 'ejs',
+    root: '/hello'
 }));
 ```
 
 That's it, easy-peasy.
+
+## Little sneaky static sites within your app (great for docs)
+
+If you want to serve an `index` file you can do that too.
+
+So if you do this:
+
+```js
+app.get('*', semiStatic());
+```
+
+And put a file called `index.jade` inside `views/static` it will get served at `yoursite.com` as well as `yoursite.com/index`.
+
+This is so you can basically have little mini static sites inside your app. For example, I like doing stuff like this for serving out a little semi-static help site within an app:
+
+```js
+app.get('/help*', semiStatic({
+    folderPath: __dirname + '/help-site',
+    root: '/help'
+}));
+```
+
+As long as you've got a folder with an `index.jade` file in it your help site will be available at `yoursite.com/help`
 
 ## License
 
