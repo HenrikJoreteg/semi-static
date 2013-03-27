@@ -15,6 +15,9 @@ module.exports = function (conf) {
         var pathName = (config.root && req.url.indexOf(config.root) === 0) ? req.url.slice(config.root.length) : req.url,
             fullPath;
 
+        // trim off ? and #
+        pathName = pathName.split('?')[0].split('#')[0];
+
         if (req.url === config.root || req.url === (config.root + '/')) {
             fullPath = config.folderPath + '/index.' + config.fileExt;
         } else {
