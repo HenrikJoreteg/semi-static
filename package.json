@@ -1,10 +1,10 @@
 {
     "name": "semi-static",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "author": "Henrik Joreteg <henrik@andyet.net>",
     "description": "Simple, lazy way to serve a directory of semi-static pages in express.js. Handy for building quick 'static' pages inside an othewise 'dynamic' app.",
     "dependencies": {
-        "underscore": ""
+        "underscore": "1.5.2"
     },
     "devDependencies": {
         "express": "",

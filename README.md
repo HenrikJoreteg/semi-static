@@ -8,7 +8,7 @@ It's silly to build a specifc route for that page when all you really want is a 
 
 I find myself adding code like this to nearly every express app I write, so I figured why the heck not publish an npm module and re-use that. So, here we are.
 
-## How to use it
+## Basic use
 
 1. Install with npm: 
     `npm install semi-static`
@@ -22,20 +22,23 @@ I find myself adding code like this to nearly every express app I write, so I fi
 
 ## Full Example
 
-You can run the example in this repo with `node server.js` and both http://localhost:3000/test and http://localhost:3000/nested/nested-works-too should render the correct templates.
+You can run the example in this repo by changing to the `example` directory and running `node server.js` and both http://localhost:3000/ and http://localhost:3000/help should render the correct templates.
 
-Here's the code:
+Here's basic sample code (see the example directory for a more elaborate example):
 
 ```js
 // super simple demo
-var express = require('express'),
-    semiStatic = require('semi-static');
+var express = require('express');
+var semiStatic = require('semi-static');
 
 // init our app
 app = express();
 
 // use jade
 app.set('view engine', 'jade');
+
+// serve our static files
+app.use(express.static(__dirname + '/public'))
 
 // register our handler
 app.get('*', semiStatic());
@@ -50,6 +53,7 @@ app.all('*', function (req, res) {
 app.listen(3000);
 console.log('started');
 ```
+
 
 ## Options / How it works
 
@@ -68,6 +72,7 @@ app.get('/hello*', semiStatic({
 ```
 
 That's it, easy-peasy.
+
 
 ## Little sneaky static sites within your app (great for docs)
 
