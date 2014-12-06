@@ -3,6 +3,7 @@ var url = require('url'),
     _ = require('underscore'),
     path = require('path');
 
+_.str = require('underscore.string');
 
 module.exports = function (conf) {
     var config = conf || {};
@@ -24,6 +25,8 @@ module.exports = function (conf) {
         } else {
             fullPath = config.folderPath + pathName;
             if(!config.keepExt) fullPath += '.' + config.fileExt;
+	    if(config.keepExt && !_.str.endsWith(fullPath, config.fileExt)) return next();
+	  
         }
 
         fs.exists(fullPath, function (exists) {
