@@ -26,13 +26,15 @@ module.exports = function (conf) {
 
         fs.exists(fullPath, function (exists) {
             if (exists && !config.context) {
-                res.render(fullPath, {pageName: _.last(req.url.split('/'))});
+                res.render(fullPath, {pageName: _.last(req.url.split('/')), req: config.passReq ? req : null});
             } else if (exists && typeof config.context === "function") {
 		config.context(req, function(err, context){
 		if(err) return next(err);
-                else res.render(fullPath, context);
+		if(config.passReq) context.req = req;
+                res.render(fullPath, context);
 		});		
             } else if (exists && config.context) {
+		if(config.passReq) config.context.req = req;
                 res.render(fullPath, config.context);		
             } else {
 		next();
