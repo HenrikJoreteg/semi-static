@@ -25,10 +25,17 @@ module.exports = function (conf) {
         }
 
         fs.exists(fullPath, function (exists) {
-            if (exists) {
+            if (exists && !config.context) {
                 res.render(fullPath, {pageName: _.last(req.url.split('/'))});
+            } else if (exists && typeof config.context === "function") {
+		config.context(req, function(err, context){
+		if(err) return next(err);
+                else res.render(fullPath, context);
+		});		
+            } else if (exists && config.context) {
+                res.render(fullPath, config.context);		
             } else {
-                next();
+		next();
             }
         });
     };

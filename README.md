@@ -74,6 +74,8 @@ app.get('/hello*', semiStatic({
 That's it, easy-peasy.
 
 
+You may also include an option called `context` that will be passed to the rendering engine. Context can either be an object that will be passed as variables or a function that takes the `req` from express and a callback (whose result will then be passed to the template).
+
 ## Little sneaky static sites within your app (great for docs)
 
 If you want to serve an `index` file you can do that too.
