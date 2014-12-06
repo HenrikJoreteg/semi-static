@@ -67,11 +67,15 @@ If that's not the case you can set the options as follows:
 app.get('/hello*', semiStatic({
     folderPath: __dirname + '/my-other-folder',
     fileExt: 'ejs',
+    keepExt: false,
     root: '/hello'
 }));
 ```
 
+
 That's it, easy-peasy.
+
+The keepExt flag allows you to serve templates but keep their extensions (i.e. /main.html);
 
 
 ## Little sneaky static sites within your app (great for docs)
