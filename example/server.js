@@ -37,7 +37,7 @@ app.get('/help*', semiStatic({
 // because it will only do something if there's
 // a path that matches.
 app.all('*', function (req, res) {
-    res.send('not found', 404);
+    res.status(404).send('not found');
 });
 
 app.listen(3000);
