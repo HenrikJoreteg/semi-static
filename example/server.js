@@ -21,16 +21,31 @@ app.set('view engine', 'jade');
 // If you're using express out of the box, you can just
 // do this. And it will assume you put your jade files
 // into 'views/static' and will look for an 'index.jade' file.
-app.get('*', semiStatic());
+// You can also pass it a static context object,
+// that will get passed to the template engine
+app.get('*', semiStatic({
+    passReq: true,
+    context: {static: true}
+}));
 
 // You can optionally configure other semi-static "microsites"
 // alongside in any folder you want.
 //
 // The following will make the templates inside the 'helpsite'
-// folder into a semi-static site available at 'example.com/help'
+// folder into a semi-static site available at 'example.com/help'.
+// It will also call the options.context function with the req and a callback,
+// in this case populating baz with an uppercased foo (if it exists);
+// but you can perform any calculation so long as you return an object
 app.get('/help*', semiStatic({
     folderPath: __dirname + '/helpsite',
-    root: '/help'
+    root: '/help',
+    context: function(req, done) {
+        console.log(req.query.foo);
+        if (req.query.foo) {
+            return done(null, {baz: req.query.foo.toUpperCase()});
+        }
+        done(null, {});
+    }
 }));
 
 // we can still have a normal 404 at the end

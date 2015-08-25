@@ -2,7 +2,7 @@
 
 Simple, lazy way to serve a directory of semi-static pages in express.js. Handy for building quick "static" pages inside an otherwise "dynamic" app.
 
-Often you have a dynamic web app that also needs a bunch of mostly "static" pages. But you still want to use the same app layouts and template system to build out those pages. Take for instance an FAQ page inside your app that otherwise has a bunch of dynamic content. 
+Often you have a dynamic web app that also needs a bunch of mostly "static" pages. But you still want to use the same app layouts and template system to build out those pages. Take for instance an FAQ page inside your app that otherwise has a bunch of dynamic content.
 
 It's silly to build a specifc route for that page when all you really want is a route that at 'http://yourapp.com/faq' renders the `faq.jade` template in your [express.js](http://expressjs.com/) app.
 
@@ -10,7 +10,7 @@ I find myself adding code like this to nearly every express app I write, so I fi
 
 ## Basic use
 
-1. Install with npm: 
+1. Install with npm:
     `npm install semi-static`
 
 2. Create a folder called `static` inside your express views folder.
@@ -73,6 +73,9 @@ app.get('/hello*', semiStatic({
 
 That's it, easy-peasy.
 
+
+You may also include an option called `context` that will be passed to the rendering engine. Context can either be an object that will be passed as variables or a function that takes the `req` from express and a callback (whose result will then be passed to the template). If you specify `passReq: true` the express request object will also be passed (useful to access req.params, req.query, etc from your template).
+See the example code for more details.
 
 ## Little sneaky static sites within your app (great for docs)
 

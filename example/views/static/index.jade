@@ -4,5 +4,11 @@ block content
     h1 static index
 
     p
-    | By default semi-static looks inside:
-    |  #[code views/static] for an #[code index.jade] page
+      | By default semi-static looks inside:
+      |  #[code views/static] for an #[code index.jade] page
+
+    h2
+      - var helpWithQuery = "/?foo=bar";
+      | If you have query params, or go #[a(href="#{helpWithQuery}") #{helpWithQuery}]
+      | #[br] You should see a query object: #{JSON.stringify(req.query)}
+      | #[br] and static = true: {static: #{static || false}}
