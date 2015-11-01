@@ -6,6 +6,7 @@ var url = require('url'),
 
 module.exports = function (conf) {
     var config = conf || {};
+    if (!_.isObject(config)) config = {folderPath: config + ''}
     _.defaults(config, {
         folderPath: path.dirname(require.main.filename) + '/views/static',
         fileExt: 'jade',
