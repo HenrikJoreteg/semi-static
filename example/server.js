@@ -1,29 +1,30 @@
 // # Super Simple Demo
+"use strict";
 
-// we start with express
-var express = require('express');
+// We start with express
+var express = require("express");
 
-// We require semi-static .
-// in your code it'd just be require('semi-static') but we
+// We require semi-static.
+// In your code it'd just be require("semi-static") but we
 // reference it relatively to pull the one from this repo
-var semiStatic = require('../../semi-static');
+var semiStatic = require("../../semi-static");
 
-// init our app
+// Init our app.
 var app = express();
 
 // Serve our static files (css, js, images, etc.)
 // semi-static doesn't do this for us.
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/public"));
 
 // Tell express to use jade
-app.set('view engine', 'jade');
+app.set("view engine", "jade");
 
 // If you're using express out of the box, you can just
 // do this. And it will assume you put your jade files
 // into 'views/static' and will look for an 'index.jade' file.
 // You can also pass it a static context object,
 // that will get passed to the template engine
-app.get('*', semiStatic({
+app.get("*", semiStatic({
     passReq: true,
     context: {static: true}
 }));
@@ -36,9 +37,9 @@ app.get('*', semiStatic({
 // It will also call the options.context function with the req and a callback,
 // in this case populating baz with an uppercased foo (if it exists);
 // but you can perform any calculation so long as you return an object
-app.get('/help*', semiStatic({
-    folderPath: __dirname + '/helpsite',
-    root: '/help',
+app.get("/help/*", semiStatic({
+    folderPath: __dirname + "/helpsite",
+    root: "/help",
     context: function(req, done) {
         console.log(req.query.foo);
         if (req.query.foo) {
@@ -51,9 +52,9 @@ app.get('/help*', semiStatic({
 // we can still have a normal 404 at the end
 // because it will only do something if there's
 // a path that matches.
-app.all('*', function (req, res) {
-    res.status(404).send('not found');
+app.all("*", function (req, res) {
+    res.status(404).send("not found");
 });
 
 app.listen(3000);
-console.log('started');
+console.log("started");

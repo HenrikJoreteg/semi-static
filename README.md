@@ -54,20 +54,31 @@ app.listen(3000);
 console.log('started');
 ```
 
-
 ## Options / How it works
 
-All it needs is the folder where your "static" templates live and the file extension your templates use.
+All it needs is the folder where your "static" templates live and the file extension your templates use. If you just need to render Jade (the default extension), you can simply call `semiStatic("path/to/your/jade/templates")`.
 
-Defaults are `jade` as a file extension and `__dirnam + '/views/static'` as the directory.
-
-If that's not the case you can set the options as follows:
+If you need more customization, you can set the options as follows:
 
 ```js
-app.get('/hello*', semiStatic({
-    folderPath: __dirname + '/my-other-folder',
-    fileExt: 'ejs',
-    root: '/hello'
+// This is with the default options
+app.get("/hello*", semiStatic({
+    // Path to your templates
+    folderPath: path.dirname(require.main.filename) + "/views/static",
+
+    // Extension for your templates.
+    fileExt: "ejs",
+
+    // URL root for your templates.
+    root: "/",
+
+    // Whether to pass the request as `req` to res.render()
+    passReq: false,
+
+    // A custom context to send to the file, either a value or a function that
+    // accepts two arguments: the request and a Node-style callback that takes
+    // an error and return value.
+    context: undefined
 }));
 ```
 
@@ -84,7 +95,7 @@ If you want to serve an `index` file you can do that too.
 So if you do this:
 
 ```js
-app.get('*', semiStatic());
+app.get("*", semiStatic());
 ```
 
 And put a file called `index.jade` inside `views/static` it will get served at `yoursite.com` as well as `yoursite.com/index`.
@@ -92,7 +103,7 @@ And put a file called `index.jade` inside `views/static` it will get served at `
 This is so you can basically have little mini static sites inside your app. For example, I like doing stuff like this for serving out a little semi-static help site within an app:
 
 ```js
-app.get('/help*', semiStatic({
+app.get('/help/*', semiStatic({
     folderPath: __dirname + '/help-site',
     root: '/help'
 }));
@@ -104,5 +115,4 @@ As long as you've got a folder with an `index.jade` file in it your help site wi
 
 MIT
 
-
-If you think this is handy. Follow [@HenrikJoreteg](https://twitter.com/henrikjoreteg) on the twitters. See you on the interwebz!
+If you think this is handy, follow [@HenrikJoreteg](https://twitter.com/henrikjoreteg) on the twitters. See you on the interwebz!

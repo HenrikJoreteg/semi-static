@@ -1,0 +1,21 @@
+{
+    "bitwise": true,
+    "camelcase": true,
+    "eqeqeq": true,
+    "forin": true,
+    "freeze": true,
+    "immed": true,
+    "indent": 4,
+    "latedef": "nofunc",
+    "newcap": true,
+    "noarg": true,
+    "nonbsp": true,
+    "quotmark": true,
+    "undef": true,
+    "unused": true,
+    "maxlen": 80,
+    "eqnull": true,
+    "globalstrict": true,
+    "lastsemic": true,
+    "node": true
+}

@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "author": "Henrik Joreteg <henrik@andyet.net>",
   "description": "Simple, lazy way to serve a directory of semi-static pages in express.js. Handy for building quick 'static' pages inside an othewise 'dynamic' app.",
-  "dependencies": {
-    "underscore": "1.5.2"
+  "dependencies": {},
+  "scripts": {
+    "lint": "jshint ."
   },
   "devDependencies": {
-    "express": "",
-    "jade": ""
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "jshint": "^2.8.0"
   },
   "repository": {
     "type": "git",
