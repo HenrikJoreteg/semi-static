@@ -29,7 +29,7 @@ module.exports = function (config) {
     }
 
     function clean(url) {
-        return url.replace(/(.*?)[#?]/, "$1");
+        return url.split('?')[0].split('#')[0];
     }
 
     return function (req, res, next) {
