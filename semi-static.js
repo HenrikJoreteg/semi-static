@@ -12,7 +12,7 @@ function defaults(config) {
         ret.folderPath = path.dirname(require.main.filename) + "/views/static";
     }
 
-    ret.fileExt = config.fileExt != null ? config.fileExt : "jade";
+    ret.fileExt = config.fileExt != null ? config.fileExt : "pug";
     ret.root = config.root != null ? config.root : "/";
     ret.passReq = !!config.passReq;
     ret.context = config.context;
