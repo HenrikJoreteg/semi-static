@@ -16,12 +16,12 @@ var app = express();
 // semi-static doesn't do this for us.
 app.use(express.static(__dirname + "/public"));
 
-// Tell express to use jade
-app.set("view engine", "jade");
+// Tell express to use pug
+app.set("view engine", "pug");
 
 // If you're using express out of the box, you can just
-// do this. And it will assume you put your jade files
-// into 'views/static' and will look for an 'index.jade' file.
+// do this. And it will assume you put your pug files
+// into 'views/static' and will look for an 'index.pug' file.
 // You can also pass it a static context object,
 // that will get passed to the template engine
 app.get("*", semiStatic({

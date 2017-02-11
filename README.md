@@ -34,7 +34,7 @@ var semiStatic = require('semi-static');
 // init our app
 app = express();
 
-// use jade
+// use pug
 app.set('view engine', 'pug');
 
 // serve our static files
@@ -56,7 +56,7 @@ console.log('started');
 
 ## Options / How it works
 
-All it needs is the folder where your "static" templates live and the file extension your templates use. If you just need to render Jade (the default extension), you can simply call `semiStatic("path/to/your/jade/templates")`.
+All it needs is the folder where your "static" templates live and the file extension your templates use. If you just need to render Pug (the default extension), you can simply call `semiStatic("path/to/your/pug/templates")`. For compatibility reasons, the default also falls back to accepting `.jade`, but you *should* change that extension ASAP.
 
 If you need more customization, you can set the options as follows:
 
@@ -98,7 +98,7 @@ So if you do this:
 app.get("*", semiStatic());
 ```
 
-And put a file called `index.jade` inside `views/static` it will get served at `yoursite.com` as well as `yoursite.com/index`.
+And put a file called `index.pug` inside `views/static` it will get served at `yoursite.com` as well as `yoursite.com/index`.
 
 This is so you can basically have little mini static sites inside your app. For example, I like doing stuff like this for serving out a little semi-static help site within an app:
 
