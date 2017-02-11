@@ -4,7 +4,7 @@ Simple, lazy way to serve a directory of semi-static pages in express.js. Handy 
 
 Often you have a dynamic web app that also needs a bunch of mostly "static" pages. But you still want to use the same app layouts and template system to build out those pages. Take for instance an FAQ page inside your app that otherwise has a bunch of dynamic content.
 
-It's silly to build a specifc route for that page when all you really want is a route that at 'http://yourapp.com/faq' renders the `faq.jade` template in your [express.js](http://expressjs.com/) app.
+It's silly to build a specifc route for that page when all you really want is a route that at 'http://yourapp.com/faq' renders the `faq.pug` template in your [express.js](http://expressjs.com/) app.
 
 I find myself adding code like this to nearly every express app I write, so I figured why the heck not publish an npm module and re-use that. So, here we are.
 
@@ -35,7 +35,7 @@ var semiStatic = require('semi-static');
 app = express();
 
 // use jade
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 // serve our static files
 app.use(express.static(__dirname + '/public'))
@@ -109,7 +109,7 @@ app.get('/help/*', semiStatic({
 }));
 ```
 
-As long as you've got a folder with an `index.jade` file in it your help site will be available at `yoursite.com/help`
+As long as you've got a folder with an `index.pug` file in it your help site will be available at `yoursite.com/help`
 
 ## License
 
