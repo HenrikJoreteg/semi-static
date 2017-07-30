@@ -56,9 +56,9 @@ module.exports = function (config) {
         var file, url;
 
         if (config.root && req.url.indexOf(config.root) === 0) {
-            url = req.url.slice(config.root.length);
+            url = reqUrl.slice(config.root.length);
         } else {
-            url = req.url;
+            url = reqUrl;
         }
 
         if (reqUrl === config.root || reqUrl === (config.root + "/")) {
